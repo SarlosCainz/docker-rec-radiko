@@ -2,6 +2,29 @@
 
 LANG=ja_JP.utf8
 
+if [ $# -eq 0 ]; then
+  cmd=`basename $0`
+  echo "usage: $cmd connfig_name"
+  echo "       $cmd channel duration(minuites) [prefix] [album artist]"
+  exit 1
+fi
+
+if [ $# -eq 1 ]; then
+  config=`jq .$1 /config.json`
+  if [ $? -ne 0 ]; then
+    exit 1
+  fi
+  if [ "null" = "$config" ]; then
+    echo $1 not found.
+    exit 1
+  fi
+  channel=`echo $config | jq -r .channel`
+  duration=`echo $config | jq -r .duration`
+  alubm=`echo $config | jq -r .album`
+  artist=`echo $config | jq -r .artist`
+  exec $0 $channel $duration $1 "$alubm" "$artist"
+fi
+
 date=`date '+%Y-%m-%d'`
 playerurl=http://radiko.jp/apps/js/flash/myplayer-release.swf
 playerfile=player.swf
@@ -9,10 +32,6 @@ keyfile=authkey.png
 
 outdir=/data
 
-if [ $# -le 1 ]; then
-  echo "usage : $0 channel_name duration(minuites) [prefix] [album artist]"
-  exit 1
-fi
 
 if [ $# -ge 2 ]; then
   channel=$1
@@ -139,7 +158,7 @@ OUTFILE=${PREFIX}_${date}.mp3
 ffmpeg -loglevel quiet -y -i "$FLVFILE" -acodec libmp3lame -ab 128k "$OUTFILE"
 
 if [ "$TITLE" != "" ]; then
-  id3v2 -A "$TITLE" -a "$ARTIST" -t $date "$OUTFILE"
+  id3v2 -A "$TITLE" -a "$ARTIST" -t "$date ON AIR" "$OUTFILE"
 fi
 
 if [ -e "$OUTFILE" ]; then
