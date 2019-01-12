@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LANG=ja_JP.utf8
+export LC_ALL=ja_JP.UTF8
 
 if [ $# -eq 0 ]; then
   cmd=`basename $0`

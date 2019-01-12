@@ -13,15 +13,12 @@ RUN apt-get update \
         rtmpdump \
         swftools \
         wget \
+        language-pack-ja \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN locale-gen ja_JP.UTF-8
-ENV LANG ja_JP.UTF-8
-ENV LANGUAGE ja_JP:en
-ENV LC_ALL ja_JP.UTF-8
-RUN /bin/rm /etc/localtime
-RUN /bin/ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+RUN /bin/rm /etc/localtime \
+ && /bin/ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 
 VOLUME ["/data", "/config.json"]
 WORKDIR /tmp
