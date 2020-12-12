@@ -1,14 +1,30 @@
 {
-    "FruitMarket": {
+    "TravellingWithoutMoving": {
+        "week_of_day": "sun",
+        "time_at": "2000",
         "channel": "FMJ",
-        "duration": 121,
-        "album": "FRUIT MARKET",
-        "artist": "横山エリカ"
-    },
-    "anntena": {
-        "channel": "FMJ",
-        "duration": 56,
-        "album": "antenna＊ TRAVELLING WITHOUT MOVING",
+        "album": "TUDOR TRAVELLING WITHOUT MOVING",
         "artist": "野村訓市"
+    },
+    "TimeAndTide": {
+        "week_of_day": "sat",
+        "time_at": "2100",
+        "channel": "FMJ",
+        "album": "TRUME TIME AND TIDE",
+        "artist": "市川沙耶"
+    },
+    "ColorsOfWonder": {
+        "week_of_day": "sun",
+        "time_at": "1200",
+        "channel": "FMJ",
+        "album": "CHINTAI COLORS OF WONDER",
+        "artist": "堀口ミイナ"
+    },
+    "MakeMyDay": {
+        "week_of_day": "sun",
+        "time_at": "0900",
+        "channel": "FMJ",
+        "album": "MAKE MY DAY",
+        "artist": "前田智子"
     }
 }
